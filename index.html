@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konevich Woodcraft — індивідуальні проєкти для дому та бізнесу</title>
+  <meta name="description" content="Konevich Woodcraft — індивідуальні проєкти для дому та бізнесу. Дерево, МДФ, шпон, якісна фурнітура. Ужгород та область." />
+
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --paper:#fbf7f1;
+      --text:#1e1a16;
+      --muted: rgba(30,26,22,.72);
+
+      --coffee:#6b4a2f;
+      --coffee2:#4a3323;
+      --stroke: rgba(107,74,47,.22);
+
+      --max:1120px;
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* ===== Header ===== */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(246,241,234,.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--stroke);
+    }
+    .nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px 14px;
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      gap:14px;
+    }
+
+    /* Slogan line (як у Plashka) */
+    .topline{
+      grid-column: 1 / -1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      padding:6px 0 10px;
+      color: rgba(30,26,22,.60);
+      font-size:13px;
+      letter-spacing:.02em;
+    }
+    .topline::before,
+    .topline::after{
+      content:"";
+      height:1px;
+      width: min(240px, 22vw);
+      background: rgba(30,26,22,.20);
+      border-radius:999px;
+    }
+    .topline span{
+      text-align:center;
+      padding:0 6px;
+      white-space:nowrap;
+    }
+
+    /* LEFT */
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .phone{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(30,26,22,.78);
+      font-size:14px;
+      white-space:nowrap;
+    }
+    .phone svg{ width:18px; height:18px; fill: rgba(107,74,47,.75); }
+
+    .pipe{
+      color: rgba(30,26,22,.28);
+      font-size:16px;
+      line-height:1;
+      padding:0 6px;
+      user-select:none;
+    }
+
+    .mini-socials{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .mini-socials a{
+      display:grid;
+      place-items:center;
+      width:28px; height:28px;
+      border-radius:10px;
+      transition:.15s;
+      color: rgba(30,26,22,.62);
+    }
+    .mini-socials a:hover{
+      background: rgba(107,74,47,.08);
+      color: var(--coffee2);
+      transform: translateY(-1px);
+    }
+    .mini-socials svg{ width:18px; height:18px; fill: currentColor; }
+
+    /* CENTER: label */
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .brand .badge{
+      width:148px; height:148px;
+      border-radius:50%;
+      background: var(--paper);
+      border:1px solid var(--stroke);
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      transition:.15s;
+    }
+    .brand:hover .badge{
+      transform: translateY(-1px);
+      border-color: rgba(107,74,47,.38);
+      box-shadow: 0 14px 26px rgba(0,0,0,.08);
+    }
+    .brand img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    /* RIGHT: menu */
+    .nav-right{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:10px;
+    }
+    .menu{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:nowrap;
+    }
+    .menu a{
+      font-size:14px;
+      padding:10px 12px;
+      border-radius:12px;
+      color: rgba(30,26,22,.86);
+      transition:.15s;
+      white-space:nowrap;
+    }
+    .menu a:hover{
+      background: rgba(107,74,47,.10);
+      color:var(--coffee2);
+    }
+
+    .burger{
+      display:none;
+      width:44px; height:44px;
+      border-radius:14px;
+      background:var(--paper);
+      border:1px solid var(--stroke);
+      cursor:pointer;
+      position:relative;
+      margin-left:6px;
+    }
+    .burger span{
+      position:absolute; left:12px; right:12px; height:2px;
+      background: var(--coffee2); border-radius:2px;
+    }
+    .burger span:nth-child(1){ top:15px; }
+    .burger span:nth-child(2){ top:21px; }
+    .burger span:nth-child(3){ top:27px; }
+
+    .mobile{
+      display:none;
+      padding:10px 18px 16px;
+      border-top:1px solid var(--stroke);
+      max-width:var(--max);
+      margin:0 auto;
+    }
+    .mobile a{
+      display:block;
+      padding:12px 10px;
+      border-radius:12px;
+      color: rgba(30,26,22,.86);
+    }
+    .mobile a:hover{ background: rgba(107,74,47,.10); }
+    .mobile.show{ display:block; }
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;
+      min-height:72vh;
+      display:grid;
+      align-items:end;
+      overflow:hidden;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.64), rgba(0,0,0,.26), rgba(0,0,0,.72)),
+        radial-gradient(90% 90% at 20% 10%, rgba(255,224,190,.18), rgba(0,0,0,0) 55%),
+        radial-gradient(75% 80% at 70% 60%, rgba(107,74,47,.16), rgba(0,0,0,0) 58%);
+      pointer-events:none;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(120% 90% at 50% 20%, rgba(0,0,0,0) 40%, rgba(0,0,0,.35) 100%);
+      pointer-events:none;
+    }
+    .hero .bg{
+      position:absolute; inset:0;
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
+      transform: scale(1.02);
+      filter: contrast(1.08) saturate(1.15);
+    }
+
+    .hero-inner{
+      position:relative;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:90px 18px 70px;
+      display:grid;
+      gap:12px;
+      width:100%;
+    }
+    .hero h1{
+      margin:0;
+      color:#fff;
+      font-size: clamp(32px, 4.8vw, 56px);
+      line-height:1.04;
+      letter-spacing:.02em;
+      text-shadow: 0 16px 38px rgba(0,0,0,.55);
+      max-width:900px;
+    }
+
+    /* ✅ короткий рядок матеріалів під заголовком */
+    .hero .materials{
+      width: fit-content;
+      color: rgba(255,255,255,.92);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      text-shadow: 0 10px 22px rgba(0,0,0,.70);
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:8px 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; }
+    .btn{
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid rgba(246,241,234,.35);
+      background: rgba(246,241,234,.16);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      transition:.15s;
+      backdrop-filter: blur(8px);
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(246,241,234,.22); border-color: rgba(246,241,234,.55); }
+    .btn.primary{
+      background: rgba(107,74,47,.92);
+      border-color: rgba(107,74,47,.92);
+    }
+    .btn.primary:hover{ background: rgba(74,51,35,.96); border-color: rgba(74,51,35,.96); }
+
+    /* ===== Sections ===== */
+    .section{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:64px 18px;
+    }
+
+    /* Заголовок як у Plashka + підзаголовок по центру */
+    .head{
+      display:grid;
+      gap:10px;
+      margin-bottom:22px;
+      text-align:center;
+    }
+    .titleline{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:22px;
+    }
+    .titleline::before,
+    .titleline::after{
+      content:"";
+      height:1px;
+      width: min(380px, 26vw);
+      background: rgba(30,26,22,.28);
+      border-radius:999px;
+    }
+    h2{
+      margin:0;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing:.18em;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+    .lead{
+      margin:0 auto;
+      color: rgba(30,26,22,.62);
+      max-width:720px;
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .card{
+      grid-column: span 4;
+      background:var(--paper);
+      border:1px solid var(--stroke);
+      border-radius:var(--r);
+      padding:18px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.06);
+    }
+    .card h3{ margin:0 0 8px; font-size:16px; }
+    .card p{ margin:0; color: rgba(30,26,22,.72); font-size:14px; }
+
+    .steps .card{ grid-column: span 3; }
+    .num{
+      width:36px; height:36px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background: rgba(107,74,47,.10);
+      border:1px solid var(--stroke);
+      font-weight:900;
+      color:var(--coffee2);
+      margin-bottom:10px;
+    }
+
+    .portfolio{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .work{
+      grid-column: span 4;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--stroke);
+      background:var(--paper);
+      box-shadow: 0 12px 28px rgba(0,0,0,.07);
+    }
+    .ph{
+      height:220px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.10)),
+        radial-gradient(70% 80% at 30% 10%, rgba(107,74,47,.18), rgba(0,0,0,0));
+    }
+    .meta{ padding:14px 14px 16px; }
+    .meta b{ display:block; margin-bottom:6px; }
+    .meta span{ color: rgba(30,26,22,.70); font-size:13px; }
+
+    .contacts{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+      margin-top:18px;
+      align-items:start;
+    }
+    .box{
+      grid-column: span 6;
+      background:var(--paper);
+      border:1px solid var(--stroke);
+      border-radius:var(--r);
+      padding:18px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.06);
+    }
+    .box h3{ margin:0 0 10px; font-size:16px; }
+    .box p{ margin:0; color: rgba(30,26,22,.74); font-size:14px; }
+
+    form{ display:grid; gap:10px; margin-top:10px; }
+    input, textarea{
+      width:100%;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(107,74,47,.25);
+      background:#fff;
+      font:inherit;
+      outline:none;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(107,74,47,.55);
+      box-shadow: 0 0 0 4px rgba(107,74,47,.12);
+    }
+    textarea{ min-height:110px; resize:vertical; }
+    .submit{
+      cursor:pointer;
+      border:1px solid rgba(107,74,47,.55);
+      background: rgba(107,74,47,.92);
+      color:#fff;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:800;
+      transition:.15s;
+    }
+    .submit:hover{ transform: translateY(-1px); background: rgba(74,51,35,.96); }
+
+    footer{
+      border-top:1px solid var(--stroke);
+      padding:22px 18px;
+      color: rgba(30,26,22,.65);
+      font-size:13px;
+    }
+    .foot{
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:980px){
+      .menu{ display:none; }
+      .burger{ display:block; }
+
+      .phone{ display:none; }
+      .pipe{ display:none; }
+
+      .brand .badge{ width:128px; height:128px; }
+
+      .card{ grid-column: span 6; }
+      .steps .card{ grid-column: span 6; }
+      .work{ grid-column: span 6; }
+      .box{ grid-column: span 12; }
+      .hero-inner{ padding-top:70px; }
+
+      .topline::before,
+      .topline::after{ width: 18vw; }
+      .topline span{ white-space:normal; }
+
+      .titleline::before,
+      .titleline::after{ width: 22vw; }
+    }
+
+    @media (max-width:560px){
+      .nav{ padding:10px 14px 12px; }
+      .brand .badge{ width:116px; height:116px; }
+
+      .card{ grid-column: span 12; }
+      .steps .card{ grid-column: span 12; }
+      .work{ grid-column: span 12; }
+
+      .burger{ width:42px; height:42px; border-radius:14px; }
+
+      .titleline{ gap:14px; }
+      .titleline::before,
+      .titleline::after{ width: 20vw; }
+      h2{ letter-spacing:.14em; }
+
+      .hero .materials{ font-size:12px; letter-spacing:.06em; padding:7px 10px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+
+    <div class="topline">
+      <span>Індивідуальні проєкти — краса, зручність і тепло в кожній деталі</span>
+    </div>
+
+    <div class="nav-left">
+      <a class="phone" href="tel:+380959249710" aria-label="Телефон">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.6 3 3.6 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C10.7 22.2 1.8 13.3 1.8 2.4 1.8 1.7 2.3 1.2 3 1.2H7c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.2 1.2l-2.2 2.2z"/></svg>
+        <span>+380 95 924 9710</span>
+      </a>
+
+      <span class="pipe">|</span>
+
+      <div class="mini-socials" aria-label="Соцмережі">
+        <a href="https://t.me/maksymkonevych" target="_blank" aria-label="Telegram" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M9.7 15.3 9.5 19c.4 0 .6-.2.9-.4l2.1-2 4.4 3.2c.8.4 1.4.2 1.6-.8L21 4.9c.3-1.3-.5-1.8-1.3-1.5L2.9 10c-1.2.5-1.2 1.2-.2 1.5l4.3 1.3 10-6.3c.5-.3.9-.1.6.2l-8.1 7.3 0 0z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/konevich.woodcraft" target="_blank" aria-label="Instagram" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.2a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM17.7 6.8a.7.7 0 1 1 0 1.4.7.7 0 0 1 0-1.4z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/share/1BUj9CfSys/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V11H7.1v3h2.5v8h3.9z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <a class="brand" href="#top" aria-label="Konevich Woodcraft">
+      <div class="badge">
+        <img src="images/label.png" alt="Konevich Woodcraft label">
+      </div>
+    </a>
+
+    <div class="nav-right">
+      <nav class="menu" aria-label="Головне меню">
+        <a href="#about">Про нас</a>
+        <a href="#services">Послуги</a>
+        <a href="#process">Як ми працюємо</a>
+        <a href="#portfolio">Портфоліо</a>
+        <a href="#contacts">Контакти</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Відкрити меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="mobile" id="mobileMenu">
+    <a href="#about">Про нас</a>
+    <a href="#services">Послуги</a>
+    <a href="#process">Як ми працюємо</a>
+    <a href="#portfolio">Портфоліо</a>
+    <a href="#contacts">Контакти</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" aria-label="Головний екран">
+    <div class="bg" style="background-image:url('images/hero.jpg');"></div>
+
+    <div class="hero-inner">
+      <h1>KONEVICH WOODCRAFT — індивідуальні проєкти для дому та бізнесу</h1>
+      <div class="materials">Дерево • МДФ • шпон • якісна фурнітура</div>
+
+      <div class="actions">
+        <a class="btn primary" href="#contacts">Замовити консультацію</a>
+        <a class="btn" href="#portfolio">Дивитись роботи</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="head">
+      <div class="titleline"><h2>Про нас</h2></div>
+      <p class="lead">Сімейна майстерня. Працюємо так, щоб результат виглядав дорого і служив довго.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h3>Акуратність у деталях</h3><p>Чисті стики, рівні площини, продумана фурнітура та фініш.</p></div>
+      <div class="card"><h3>Під потребу клієнта</h3><p>Під розміри, стиль інтерʼєру, задачі та бюджет — без шаблонів.</p></div>
+      <div class="card"><h3>Комунікація</h3><p>Погоджуємо етапи, показуємо процес, тримаємо терміни.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="head">
+      <div class="titleline"><h2>Послуги</h2></div>
+      <p class="lead">Основні напрямки (можеш сказати — я підлаштую під ваші реальні послуги).</p>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h3>Меблі під замовлення</h3><p>Столи, тумби, комоди, ТВ-зони, полиці, шафки.</p></div>
+      <div class="card"><h3>Сходи та елементи інтерʼєру</h3><p>Сходи, перила, підсходинки, декоративні рішення.</p></div>
+      <div class="card"><h3>Реставрація / оновлення</h3><p>Оновлення покриття, дрібний ремонт, підсилення конструкцій.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="head">
+      <div class="titleline"><h2>Як ми працюємо</h2></div>
+      <p class="lead">Простий процес — щоб клієнту було спокійно.</p>
+    </div>
+
+    <div class="grid steps">
+      <div class="card"><div class="num">1</div><h3>Запит</h3><p>Пишете в Telegram/Instagram або через форму.</p></div>
+      <div class="card"><div class="num">2</div><h3>Уточнення</h3><p>Матеріал, стиль, терміни, бюджет. За потреби — заміри.</p></div>
+      <div class="card"><div class="num">3</div><h3>Погодження</h3><p>Фінальні деталі, вартість, дедлайн, етапи.</p></div>
+      <div class="card"><div class="num">4</div><h3>Виготовлення</h3><p>Працюємо, показуємо прогрес, узгоджуємо фініш.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="portfolio">
+    <div class="head">
+      <div class="titleline"><h2>Портфоліо</h2></div>
+      <p class="lead">Поки плейсхолдери — потім замінимо на ваші фото.</p>
+    </div>
+
+    <div class="portfolio">
+      <div class="work"><div class="ph"></div><div class="meta"><b>Тумба / комод</b><span>Матеріал • фініш • розмір</span></div></div>
+      <div class="work"><div class="ph"></div><div class="meta"><b>Стіл</b><span>Матеріал • фініш • розмір</span></div></div>
+      <div class="work"><div class="ph"></div><div class="meta"><b>Полиця / стелаж</b><span>Матеріал • фініш</span></div></div>
+      <div class="work"><div class="ph"></div><div class="meta"><b>Сходи</b><span>Матеріал • фініш</span></div></div>
+      <div class="work"><div class="ph"></div><div class="meta"><b>ТВ-зона</b><span>Матеріал • фініш</span></div></div>
+      <div class="work"><div class="ph"></div><div class="meta"><b>Інший виріб</b><span>Матеріал • фініш</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts">
+    <div class="head">
+      <div class="titleline"><h2>Контакти</h2></div>
+      <p class="lead">Напиши нам зручним способом або залиш заявку.</p>
+    </div>
+
+    <div class="contacts">
+      <div class="box">
+        <h3>Швидкий звʼязок</h3>
+        <p style="margin-bottom:12px;">
+          Telegram: <a href="https://t.me/maksymkonevych" target="_blank" style="color:var(--coffee2); font-weight:800;" rel="noopener">@maksymkonevych</a><br>
+          Instagram: <a href="https://www.instagram.com/konevich.woodcraft" target="_blank" style="color:var(--coffee2); font-weight:800;" rel="noopener">konevich.woodcraft</a><br>
+          Facebook: <a href="https://www.facebook.com/share/1BUj9CfSys/?mibextid=wwXIfr" target="_blank" style="color:var(--coffee2); font-weight:800;" rel="noopener">KonevichWoodcraft</a>
+        </p>
+      </div>
+
+      <div class="box">
+        <h3>Заявка</h3>
+        <p>Заповни форму — і ми напишемо/подзвонимо.</p>
+
+        <form onsubmit="return fakeSubmit(event)">
+          <input type="text" name="name" placeholder="Ваше імʼя" required />
+          <input type="tel" name="phone" placeholder="Телефон" required />
+          <textarea name="message" placeholder="Коротко: що потрібно, розміри, місто"></textarea>
+          <button class="submit" type="submit">Надіслати</button>
+        </form>
+
+        <p id="msg" style="display:none; margin-top:10px; color:rgba(30,26,22,.75);">
+          Дякуємо! Заявку отримано ✅
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <div>© <span id="year"></span> Konevich Woodcraft</div>
+    <a href="#top" style="color:var(--coffee2); font-weight:800;">Вгору ↑</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  burger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('show');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('show');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  function fakeSubmit(e){
+    e.preventDefault();
+    const msg = document.getElementById('msg');
+    msg.style.display = 'block';
+    e.target.reset();
+    setTimeout(()=> msg.style.display = 'none', 3500);
+    return false;
+  }
+</script>
+
+</body>
+</html>
